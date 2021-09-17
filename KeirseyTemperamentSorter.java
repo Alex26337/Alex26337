@@ -12,7 +12,7 @@ public class KeirseyTemperamentSorter{
     public String encode(String name, String[] list){
         
         
-        return String.format("");
+        return String.format(name + "");
     }
     
 }
