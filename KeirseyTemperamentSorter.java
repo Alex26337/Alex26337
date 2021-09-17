@@ -13,6 +13,8 @@ public class KeirseyTemperamentSorter{
         
         //              1  2  3  4
         int[] aCount = {0, 0, 0, 0};
+        //              I  N  F  P
+        int[] bCount = {0, 0, 0, 0};
         return String.format(name + "");
     }
     
