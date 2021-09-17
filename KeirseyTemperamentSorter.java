@@ -17,6 +17,13 @@ public class KeirseyTemperamentSorter{
         int[] bCount = {0, 0, 0, 0};
         int[] bPercent = {0, 0, 0, 0};
         
+        for(int i = 0; i<list.length;i++){
+            if(i%7==0){
+                if(list[i].toLowerCase().equals("a"))aCount[1]++;
+                else if(list[i].toLowerCase().equals("b"))bCount[1]++;
+            }
+        }
+        
         return String.format(name + "\n");
     }
     
