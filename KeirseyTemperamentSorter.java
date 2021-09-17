@@ -15,7 +15,9 @@ public class KeirseyTemperamentSorter{
         int[] aCount = {0, 0, 0, 0};
         //              I  N  F  P
         int[] bCount = {0, 0, 0, 0};
-        return String.format(name + "");
+        int[] bPercent = {0, 0, 0, 0};
+        
+        return String.format(name + "\n");
     }
     
 }
