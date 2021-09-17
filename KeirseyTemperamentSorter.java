@@ -20,4 +20,8 @@ public class KeirseyTemperamentSorter{
         return String.format(name + "\n");
     }
     
+    public static void main(String[] args){
+        
+    }
+    
 }
