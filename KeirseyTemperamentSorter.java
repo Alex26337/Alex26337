@@ -11,8 +11,9 @@ public class KeirseyTemperamentSorter{
     
     public String encode(String name, String[] list){
         
-        
-        return String.format("");
+        //              1  2  3  4
+        int[] aCount = {0, 0, 0, 0};
+        return String.format(name + "");
     }
     
 }
