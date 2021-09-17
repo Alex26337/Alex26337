@@ -40,8 +40,8 @@ public class KeirseyTemperamentSorter{
                 }
             }
                 
-        }for(int a = 0; i<bPercent.length; a++){
-            bPercent[a] = (bCount[a]*100.0)/(bCount[a]+aCount[a]);
+        }for(int a = 0; a<bPercent.length; a++){
+            bPercent[a] = (int)((bCount[a]*100.0)/(bCount[a]+aCount[a]));
         }
         
         return String.format(name + "\n");
