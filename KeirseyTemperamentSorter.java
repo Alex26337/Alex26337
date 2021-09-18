@@ -7,9 +7,20 @@
 
 public class KeirseyTemperamentSorter{
     
-    public String[] recordedAnswers = new String[70];
+    private String[] recordedAnswers = new String[70];
     
-    public String encode(String name, String[] list){
+    private static String percentConversion(int[] list){
+        String output = "";
+        for(int i=0; i<list.length;i++){
+            switch(i){
+                case 0: output+= list[i]>=50?"I":"E"; break;
+                case 1: output+= list[i]>=50?"N":"S"; break;
+                case 2: output+= list[i]>=50?"F":"T"; break;
+                case 3: output+= list[i]>=50?"P":"J"; break;
+            }    
+        }return output;
+    }
+    public static String encode(String name, String[] list){
         
         //              E  S  T  J
         int[] aCount = {0, 0, 0, 0};
@@ -44,11 +55,11 @@ public class KeirseyTemperamentSorter{
             bPercent[a] = (int)((bCount[a]*100.0)/(bCount[a]+aCount[a]));
         }
         
-        return String.format(name + "\n");
+        return String.format(name + ": \n%dA-%dB %dA-%dB %dA-%dB %dA-%dB\n[%d%, %d%, %d%, %d%] = "+percentConversion(bPercent), aCount[0], bCount[0], aCount[1], bCount[1], aCount[2], bCount[2], aCount[3], bCount[3], bPercent[0], bPercent[1], bPercent[2], bPercent[3]);
     }
     
     public static void main(String[] args){
-        
+        System.out.println(encode("Aaron", "abbababbababbababbaabaaaaaabaabbbababbabaababbabbbbbababbbababbbaaaaaa".split("")));
     }
     
 }
