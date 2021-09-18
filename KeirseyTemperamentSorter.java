@@ -55,7 +55,7 @@ public class KeirseyTemperamentSorter{
             bPercent[a] = (int)((bCount[a]*100.0)/(bCount[a]+aCount[a]));
         }
         
-        return String.format(name + ": \n%dA-%dB %dA-%dB %dA-%dB %dA-%dB\n[%d%, %d%, %d%, %d%] = "+percentConversion(bPercent), aCount[0], bCount[0], aCount[1], bCount[1], aCount[2], bCount[2], aCount[3], bCount[3], bPercent[0], bPercent[1], bPercent[2], bPercent[3]);
+        return String.format(name + ": \n%dA-%dB %dA-%dB %dA-%dB %dA-%dB\n[%d%%, %d%%, %d%%, %d%%] = "+percentConversion(bPercent), aCount[0], bCount[0], aCount[1], bCount[1], aCount[2], bCount[2], aCount[3], bCount[3], bPercent[0], bPercent[1], bPercent[2], bPercent[3]);
     }
     
     public static void main(String[] args){
