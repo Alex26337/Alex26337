@@ -59,7 +59,7 @@ public class KeirseyTemperamentSorter{
     }
     
     public static void main(String[] args){
-        System.out.println(encode("Aaron", "abbababbababbababbaabaaaaaabaabbbababbabaababbabbbbbababbbababbbaaaaaa".split("")));
+        
     }
     
 }
