@@ -5,6 +5,8 @@
  *  Name: KeirseyTemperamentSorter.java
  */
 
+import java.util.Scanner;
+
 public class KeirseyTemperamentSorter{
     
     private String[] recordedAnswers = new String[70];
@@ -59,6 +61,8 @@ public class KeirseyTemperamentSorter{
     }
     
     public static void main(String[] args){
+        
+        Scanner kb = new Scanner(System.in);
         
     }
     
