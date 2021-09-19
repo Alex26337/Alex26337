@@ -16,15 +16,15 @@ public class KeirseyTemperamentSorter{
     private String[] recordedAnswers = new String[70];
     
     private static String percentConversion(int[] list){
-        
+        String output = "";
         for(int i=0; i<list.length;i++){
             switch(i){
-                case 0: return list[i]==100||list[i]>=50&&list[i]<100?"I":list[i]>=0&&list[i]<50?"E":"-";
-                case 1: return list[i]==100||list[i]>=50&&list[i]<100?"N":list[i]>=0&&list[i]<50?"S":"-";
-                case 2: return list[i]==100||list[i]>=50&&list[i]<100?"F":list[i]>=0&&list[i]<50?"T":"-";
-                case 3: return list[i]==100||list[i]>=50&&list[i]<100?"P":list[i]>=0&&list[i]<50?"J":"-";
+                case 0: output += list[i]==100||list[i]>=50&&list[i]<100?"I":list[i]>=0&&list[i]<50?"E":"-"; break;
+                case 1: output += list[i]==100||list[i]>=50&&list[i]<100?"N":list[i]>=0&&list[i]<50?"S":"-"; break;
+                case 2: output += list[i]==100||list[i]>=50&&list[i]<100?"F":list[i]>=0&&list[i]<50?"T":"-"; break;
+                case 3: output += list[i]==100||list[i]>=50&&list[i]<100?"P":list[i]>=0&&list[i]<50?"J":"-"; break;
             }    
-        }return "----";
+        }return output;
     }
     public static String encode(String name, String[] list){
         
@@ -61,24 +61,25 @@ public class KeirseyTemperamentSorter{
             bPercent[a] = (int)((bCount[a]*100.0)/(bCount[a]+aCount[a]));
         }
         
-        return String.format(name + ": \n%dA-%dB %dA-%dB %dA-%dB %dA-%dB\n[%d%%, %d%%, %d%%, %d%%] = "+percentConversion(bPercent)+"\n\n", aCount[0], bCount[0], aCount[1], bCount[1], aCount[2], bCount[2], aCount[3], bCount[3], bPercent[0], bPercent[1], bPercent[2], bPercent[3]);
+        return String.format(name + ": \n%dA-%dB %dA-%dB %dA-%dB %dA-%dB\n[%d%%, %d%%, %d%%, %d%%] = "+percentConversion(bPercent)+"\n", aCount[0], bCount[0], aCount[1], bCount[1], aCount[2], bCount[2], aCount[3], bCount[3], bPercent[0], bPercent[1], bPercent[2], bPercent[3]);
     }
     
     public static void main(String[] args) throws IOException{
         
-        File output = new File("output.txt");
-        Scanner data = new Scanner(new File("E:\\Other\\GitMode\\src\\personality.txt"));
+        File personality = new File("E:\\Other\\GitMode\\src\\personality.txt");
+        File output = new File("E:\\Other\\GitMode\\src\\output.txt");
+        Scanner data = new Scanner(personality);
         PrintWriter out = new PrintWriter(new FileWriter(output));
         String name;
+        
         while(data.hasNextLine()){
             name = data.nextLine();
-            //System.out.println("Initialized Name");
             if(data.hasNextLine())out.println(encode(name, data.nextLine().split("")));
-            //System.out.println("Encoded Scantron");
-        }
-        Scanner outRead = new Scanner(output);
-        while(outRead.hasNextLine())System.out.println(outRead.nextLine());
-        out.close();
+        }out.flush();
+        
+        Scanner results = new Scanner(output);
+        while(results.hasNextLine()){System.out.println(results.nextLine());}
+        data.close(); out.close();
         
     }
     
