@@ -13,9 +13,13 @@ import java.util.Scanner;
 
 public class KeirseyTemperamentSorter{
     
-    private String[] recordedAnswers = new String[70];
-    
-    private static String percentConversion(int[] list){
+    /**
+     * Converts the percentage of answers to the overall personality type.
+     * 
+     * @param list the list of percentages of each personality type
+     * @return the overall personality type, abbreviated as a {@code String} object.
+     */
+    private static String percentToType(int[] list){
         String output = "";
         for(int i=0; i<list.length;i++){
             switch(i){
@@ -26,12 +30,18 @@ public class KeirseyTemperamentSorter{
             }    
         }return output;
     }
+    /**
+     * Encodes the answers corresponding to the {@code name} and returns 
+     * the data of their answers and corresponding personality combination.
+     * 
+     * @param name the identification of the person
+     * @param list the array of the documented answers
+     * @return the data of their personality level
+     */
     public static String encode(String name, String[] list){
         
-        //              E  S  T  J
-        int[] aCount = {0, 0, 0, 0};
-        //              I  N  F  P
-        int[] bCount = {0, 0, 0, 0};
+        int[] aCount = {0, 0, 0, 0}; /* Extrovert, Sensation, Thinking, Judging */
+        int[] bCount = {0, 0, 0, 0}; /* Introvert, iNtuitive, Feeling, Perceiving */
         int[] bPercent = {0, 0, 0, 0};
         
         for(int i = 0; i<list.length;i++){
@@ -55,13 +65,11 @@ public class KeirseyTemperamentSorter{
                     case "a" : aCount[3]++; break;
                     case "b" : bCount[3]++; break;
                 }
-            }
-                
+            }        
         }for(int a = 0; a<bPercent.length; a++){
             bPercent[a] = (int)((bCount[a]*100.0)/(bCount[a]+aCount[a]));
         }
-        
-        return String.format(name + ": \n%dA-%dB %dA-%dB %dA-%dB %dA-%dB\n[%d%%, %d%%, %d%%, %d%%] = "+percentConversion(bPercent)+"\n", aCount[0], bCount[0], aCount[1], bCount[1], aCount[2], bCount[2], aCount[3], bCount[3], bPercent[0], bPercent[1], bPercent[2], bPercent[3]);
+        return String.format(name + ": \n%dA-%dB %dA-%dB %dA-%dB %dA-%dB\n[%d%%, %d%%, %d%%, %d%%] = "+percentToType(bPercent)+"\n", aCount[0], bCount[0], aCount[1], bCount[1], aCount[2], bCount[2], aCount[3], bCount[3], bPercent[0], bPercent[1], bPercent[2], bPercent[3]);
     }
     
     public static void main(String[] args) throws IOException{
@@ -82,5 +90,4 @@ public class KeirseyTemperamentSorter{
         data.close(); out.close();
         
     }
-    
 }
