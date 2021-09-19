@@ -77,19 +77,23 @@ public class KeirseyTemperamentSorter{
     
     public static void main(String[] args) throws IOException{
         
+        /* The personality and output files are directed from my drive, cutrrently.  *
+         * I don't know how to fix this problem yet.                                 */
         File personality = new File("E:\\Other\\GitMode\\src\\personality.txt");
         File output = new File("E:\\Other\\GitMode\\src\\output.txt");
+        
         Scanner data = new Scanner(personality);
         PrintWriter out = new PrintWriter(new FileWriter(output));
         String name;
-        
         while(data.hasNextLine()){
             name = data.nextLine();
             if(data.hasNextLine())out.println(encode(name, data.nextLine().split("")));
-        }out.flush();
-        
+        }
+        /* The next 3 lines of code are for testing on the JVM to see if the data is satisfactory. */
+        out.flush();
         Scanner results = new Scanner(output);
-        while(results.hasNextLine()){System.out.println(results.nextLine());}
+        while(results.hasNextLine())System.out.println(results.nextLine());
+        
         data.close(); // Closes the personality data
         out.close();  // Closes the PrintWriter
     }
