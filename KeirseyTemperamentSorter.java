@@ -21,7 +21,7 @@ public class KeirseyTemperamentSorter{
      * @param list the list of percentages of each personality type
      * @return the overall personality type, abbreviated as a {@code String} object.
      */
-    private static String percentToType(int[] list){
+    private String percentToType(int[] list){
         String output = "";
         for(int i=0; i<list.length;i++){
             switch(i){
@@ -40,7 +40,7 @@ public class KeirseyTemperamentSorter{
      * @param list the array of the documented answers
      * @return the data of their personality level
      */
-    public static String encode(String name, String[] list){
+    public String encode(String name, String[] list){
         
         int[] aCount = {0, 0, 0, 0}; /* Extrovert, Sensation, Thinking, Judging */
         int[] bCount = {0, 0, 0, 0}; /* Introvert, iNtuitive, Feeling, Perceiving */
@@ -79,21 +79,17 @@ public class KeirseyTemperamentSorter{
         
         /* The personality and output files are directed from my drive, cutrrently.  *
          * I don't know how to fix this problem yet.                                 */
-        File personality = new File("E:\\Other\\GitMode\\src\\personality.txt");
-        File output = new File("E:\\Other\\GitMode\\src\\output.txt");
+        File personality = new File("personality.txt");
+        File output = new File("output.txt");
         
         Scanner data = new Scanner(personality);
         PrintWriter out = new PrintWriter(new FileWriter(output));
         String name;
+        KeirseyTemperamentSorter kts = new KeirseyTemperamentSorter();
         while(data.hasNextLine()){
             name = data.nextLine();
-            if(data.hasNextLine())out.println(encode(name, data.nextLine().split("")));
+            if(data.hasNextLine())out.println(kts.encode(name, data.nextLine().split("")));
         }
-        /* The next 3 lines of code are for testing on the JVM to see if the data is satisfactory. */
-        out.flush();
-        Scanner results = new Scanner(output);
-        while(results.hasNextLine())System.out.println(results.nextLine());
-        
         data.close(); // Closes the personality data
         out.close();  // Closes the PrintWriter
     }
