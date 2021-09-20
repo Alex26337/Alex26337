@@ -76,9 +76,7 @@ public class KeirseyTemperamentSorter{
     }
     
     public static void main(String[] args) throws IOException{
-        
-        /* The personality and output files are directed from my drive, cutrrently.  *
-         * I don't know how to fix this problem yet.                                 */
+       
         File personality = new File("personality.txt");
         File output = new File("output.txt");
         
