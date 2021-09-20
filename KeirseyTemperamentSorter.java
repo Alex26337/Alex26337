@@ -4,15 +4,13 @@
  *  Class: Computer Science II K
  *  Name: KeirseyTemperamentSorter.java
  */
-
 import java.io.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-public class KeirseyTemperamentSorter{
-    
+public class KeirseyTemperamentSorter{    
     /**
      * Converts the percentage of answers to the overall personality type. 
      * If for each personality type the percentage is 50%, it returns "X" for that personality trait.
@@ -76,14 +74,13 @@ public class KeirseyTemperamentSorter{
     }
     
     public static void main(String[] args) throws IOException{
-       
         File personality = new File("personality.txt");
         File output = new File("output.txt");
-        
         Scanner data = new Scanner(personality);
         PrintWriter out = new PrintWriter(new FileWriter(output));
         String name;
         KeirseyTemperamentSorter kts = new KeirseyTemperamentSorter();
+        
         while(data.hasNextLine()){
             name = data.nextLine();
             if(data.hasNextLine())out.println(kts.encode(name, data.nextLine().split("")));
