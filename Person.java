@@ -40,8 +40,8 @@ public class Person{
      */
     public String encode(String name, String[] list){
         
-        int[] aCount = {0, 0, 0, 0}; /* Extrovert, Sensation, Thinking, Judging */
-        int[] bCount = {0, 0, 0, 0}; /* Introvert, iNtuitive, Feeling, Perceiving */
+        int[] aCount = {0, 0, 0, 0}; /* Extrovert, Sensation, Thinking, Judging    */
+        int[] bCount = {0, 0, 0, 0}; /* Introvert, iNtuitive, Feeling,  Perceiving */
         int[] bPercent = {0, 0, 0, 0};
         
         for(int i = 0; i<list.length;i++){
