@@ -31,18 +31,33 @@ public class Person{
         }return output;
     }
     /**
+     * Returns the percent of answers between each index of {@code list2} from the total of each index.
+     * 
+     * @param list1 the first list
+     * @param list2 the second list
+     * @return the percent of {@code list2} from the total amount
+     * @throws java.lang.Exception throws if {@code list1} and {@code list2} lengths mismatch
+     */
+    private int[] answerPercent(int[] list1, int[] list2) throws Exception{
+        if(list1.length!=list2.length)throw new Exception("Mismatched Array Lengths");
+        int[] percentList = new int[4];
+        for(int a = 0; a<percentList.length; a++){
+            try{percentList[a] = (int)((list2[a]*100.0)/(list1[a]+list2[a]));}
+            catch(ArithmeticException ae){percentList[a]=-1;}
+        }return percentList;
+    }
+    /**
      * Encodes the answers corresponding to the {@code name} and returns 
      * the data of their answers and corresponding personality combination.
      * 
      * @param name the identification of the person
      * @param list the array of the documented answers
      * @return the data of their personality level
+     * @throws java.lang.Exception
      */
-    public String encode(String name, String[] list){
-        
+    public String encode(String name, String[] list) throws Exception{
         int[] aCount = {0, 0, 0, 0}; /* Extrovert, Sensation, Thinking, Judging    */
         int[] bCount = {0, 0, 0, 0}; /* Introvert, iNtuitive, Feeling,  Perceiving */
-        int[] bPercent = {0, 0, 0, 0};
         
         for(int i = 0; i<list.length;i++){
             if(i%7==0){
@@ -65,15 +80,11 @@ public class Person{
                     case "a" : aCount[3]++; break;
                     case "b" : bCount[3]++; break;
                 }
-            }        
-        }for(int a = 0; a<bPercent.length; a++){
-            try{bPercent[a] = (int)((bCount[a]*100.0)/(bCount[a]+aCount[a]));}
-            catch(ArithmeticException ae){bPercent[a]=-1;}
-        }
+            }
+        }int[] bPercent = answerPercent(aCount, bCount);
         return String.format(name + ":\n    %dA-%dB %dA-%dB %dA-%dB %dA-%dB\n    [%d%%, %d%%, %d%%, %d%%] = "+percentToType(bPercent)+"\n", aCount[0], bCount[0], aCount[1], bCount[1], aCount[2], bCount[2], aCount[3], bCount[3], bPercent[0], bPercent[1], bPercent[2], bPercent[3]);
     }
-    
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws Exception, IOException{
         Scanner data = new Scanner(new File("personality.txt"));
         PrintWriter out = new PrintWriter(new FileWriter(new File("output.txt")));
         String name;
