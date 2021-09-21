@@ -74,16 +74,13 @@ public class Person{
     }
     
     public static void main(String[] args) throws IOException{
-        File personality = new File("personality.txt");
-        File output = new File("output.txt");
-        Scanner data = new Scanner(personality);
-        PrintWriter out = new PrintWriter(new FileWriter(output));
+        Scanner data = new Scanner(new File("personality.txt"));
+        PrintWriter out = new PrintWriter(new FileWriter(new File("output.txt")));
         String name;
-        Person kts = new Person();
         
         while(data.hasNextLine()){
             name = data.nextLine();
-            if(data.hasNextLine())out.println(kts.encode(name, data.nextLine().split("")));
+            if(data.hasNextLine())out.println(new Person().encode(name, data.nextLine().split("")));
         }
         data.close(); // Closes the personality data
         out.close();  // Closes the PrintWriter
